@@ -1,0 +1,209 @@
+[gd_scene load_steps=9 format=3 uid="uid://cspxq3qpedewy"]
+
+[ext_resource type="Texture2D" uid="uid://dh020s5fleg3x" path="res://Screenshot from 2023-12-17 15-18-43.png" id="1_hivvw"]
+[ext_resource type="PackedScene" uid="uid://b1sxl4jl2452w" path="res://player.tscn" id="2_28t13"]
+[ext_resource type="PackedScene" uid="uid://jlyycdvyueu8" path="res://wall.tscn" id="3_6nf2h"]
+[ext_resource type="PackedScene" uid="uid://wxhujt8ld7uk" path="res://obstacle.tscn" id="3_12ts6"]
+[ext_resource type="Script" path="res://top.gd" id="4_x7i4f"]
+[ext_resource type="Script" path="res://bottom.gd" id="6_i2qx7"]
+
+[sub_resource type="GDScript" id="GDScript_pssmg"]
+script/source = "extends Area2D
+
+var poschange: int = 0
+signal wall_teleport
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	poschange = randi_range(0,20)
+
+func _on_area_2d_body_entered(body):
+	poschange = randi_range(0,20)
+	body.position.x += 1300
+	if body.position.y < 300:
+		body.position.y += poschange
+	elif body.position.y > 400:
+		body.position.y -= poschange
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ty4b"]
+size = Vector2(185, 1286)
+
+[node name="game" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(603, 463)
+texture = ExtResource("1_hivvw")
+region_filter_clip_enabled = true
+
+[node name="player" parent="." instance=ExtResource("2_28t13")]
+position = Vector2(412, 462)
+
+[node name="obstacle" parent="." instance=ExtResource("3_12ts6")]
+position = Vector2(1161, 455)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = SubResource("GDScript_pssmg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-219, 416)
+shape = SubResource("RectangleShape2D_5ty4b")
+
+[node name="top" type="Node2D" parent="."]
+position = Vector2(0, 20)
+script = ExtResource("4_x7i4f")
+
+[node name="wall" parent="top" instance=ExtResource("3_6nf2h")]
+
+[node name="wall2" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(64, 0)
+
+[node name="wall3" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(138, 0)
+
+[node name="wall4" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(202, 0)
+
+[node name="wall5" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(266, 0)
+
+[node name="wall6" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(340, 0)
+
+[node name="wall7" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(404, 0)
+
+[node name="wall8" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(468, 0)
+
+[node name="wall9" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(542, 0)
+
+[node name="wall10" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(606, 0)
+
+[node name="wall11" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(670, 0)
+
+[node name="wall12" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(744, 0)
+
+[node name="wall13" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(747, 0)
+
+[node name="wall14" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(811, 0)
+
+[node name="wall15" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(885, 0)
+
+[node name="wall16" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(949, 0)
+
+[node name="wall17" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1013, 0)
+
+[node name="wall18" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1087, 0)
+
+[node name="wall19" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1151, 0)
+
+[node name="wall20" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1215, 0)
+
+[node name="wall21" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1289, 0)
+
+[node name="wall22" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1353, 0)
+
+[node name="wall23" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1417, 0)
+
+[node name="wall24" parent="top" instance=ExtResource("3_6nf2h")]
+position = Vector2(1491, 0)
+
+[node name="bottom" type="Node2D" parent="."]
+position = Vector2(0, 875)
+script = ExtResource("6_i2qx7")
+
+[node name="wall" parent="bottom" instance=ExtResource("3_6nf2h")]
+
+[node name="wall2" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(64, 0)
+
+[node name="wall3" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(138, 0)
+
+[node name="wall4" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(202, 0)
+
+[node name="wall5" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(266, 0)
+
+[node name="wall6" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(340, 0)
+
+[node name="wall7" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(404, 0)
+
+[node name="wall8" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(468, 0)
+
+[node name="wall9" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(542, 0)
+
+[node name="wall10" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(606, 0)
+
+[node name="wall11" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(670, 0)
+
+[node name="wall12" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(744, 0)
+
+[node name="wall13" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(747, 0)
+
+[node name="wall14" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(811, 0)
+
+[node name="wall15" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(885, 0)
+
+[node name="wall16" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(949, 0)
+
+[node name="wall17" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1013, 0)
+
+[node name="wall18" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1087, 0)
+
+[node name="wall19" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1151, 0)
+
+[node name="wall20" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1215, 0)
+
+[node name="wall21" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1289, 0)
+
+[node name="wall22" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1353, 0)
+
+[node name="wall23" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1417, 0)
+
+[node name="wall24" parent="bottom" instance=ExtResource("3_6nf2h")]
+position = Vector2(1491, 0)
+
+[connection signal="body_entered" from="Area2D" to="top" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="bottom" method="_on_area_2d_body_entered"]
